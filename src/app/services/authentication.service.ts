@@ -58,7 +58,7 @@ export class AuthenticationService {
     return this.authenticationState.value;
   }
 
-  private extractData(res: Response) {
+  private extractDatadddddddd(res: Response) {
     const body = res;
     return body || {};
   }
