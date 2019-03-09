@@ -62,8 +62,4 @@ export class AuthenticationService {
     const body = res;
     return body || {};
   }
-  private extractData1(res: Response) {
-    const body = res;
-    return body || {};
-  }
 }
