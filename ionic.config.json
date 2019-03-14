@@ -1,5 +1,13 @@
 {
   "name": "slapp",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/*",
+      "proxyUrl": "http://127.0.0.1:8080"
+    }
+  ]
 }

@@ -12,7 +12,7 @@ import {
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
 
-const endpoint = "http://127.0.0.1:8000/api/auth/";
+const endpoint = "http://127.0.0.1:8080/api/auth/";
 const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json",
@@ -34,7 +34,24 @@ export class UserService {
     //   }),
     //   catchError(this.handleError<any>("addProduct"))
     // );
+    const s = JSON.stringify({
+      title: "foo",
+      body: "bar",
+      userId: 1
+    });
+    // return this.http
+    //   .post<any>("https://jsonplaceholder.typicode.com/posts", s, httpOptions)
+    //   .pipe(
+    //     map(user => {
+    //       // login successful if there's a jwt token in the response
+    //       // if (user && user.access_token) {
+    //       //   // store user details and jwt token in local storage to keep user logged in between page refreshes
+    //       //   localStorage.setItem("currentUser", JSON.stringify(user));
+    //       // }
 
+    //       return user;
+    //     })
+    //   );
     return this.http.post<any>(endpoint + "login", user, httpOptions).pipe(
       map(user => {
         // login successful if there's a jwt token in the response
@@ -54,13 +71,11 @@ export class UserService {
         Authorization: token
       })
     };
-    return this.http
-      .get<UserInterface>("http://127.0.0.1:8000/api/auth/user", httpOptions)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
+    return this.http.get<UserInterface>(endpoint + "user", httpOptions).pipe(
+      map(data => {
+        return data;
+      })
+    );
   }
 
   private handleError<T>(operation = "operation", result?: T) {
