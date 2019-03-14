@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
@@ -12,6 +13,7 @@ import { IonicStorageModule } from "@ionic/storage";
 
 import { HttpClientModule } from "@angular/common/http";
 import { HttpService } from "./services/http.service";
+import { AuthenticationService } from "./services/authentication.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,13 +23,16 @@ import { HttpService } from "./services/http.service";
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    HttpService
+    HttpService,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
