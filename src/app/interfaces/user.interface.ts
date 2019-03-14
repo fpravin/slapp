@@ -1,6 +1,8 @@
 export interface UserInterface {
-  username: string;
+  id: string;
+  name: string;
   email: string;
-  token: string;
-  imaage?: string;
+  email_verified_at: string;
+  created_at: string;
+  updated_at: string;
 }
