@@ -12,7 +12,7 @@ import {
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
 
-const endpoint = "http://127.0.0.1:8000/api/auth/";
+const endpoint = "http://127.0.0.1:8080/api/auth/";
 const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json",
@@ -54,13 +54,11 @@ export class UserService {
         Authorization: token
       })
     };
-    return this.http
-      .get<UserInterface>("http://127.0.0.1:8000/api/auth/user", httpOptions)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
+    return this.http.get<UserInterface>(endpoint + "user", httpOptions).pipe(
+      map(data => {
+        return data;
+      })
+    );
   }
 
   private handleError<T>(operation = "operation", result?: T) {
