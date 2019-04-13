@@ -1,1 +1,16 @@
+ion-tab-bar{
+    height: 28px;
+}
 
+ion-tab-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+ion-icon{
+    font-size: 18px;
+    margin: 0;
+}
