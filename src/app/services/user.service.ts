@@ -11,8 +11,9 @@ import {
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
-const endpoint = "http://127.0.0.1:8000/api/auth/";
+const endpoint = environment.apiEndpoint;
 const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json",
@@ -54,13 +55,11 @@ export class UserService {
         Authorization: token
       })
     };
-    return this.http
-      .get<UserInterface>("http://127.0.0.1:8000/api/auth/user", httpOptions)
-      .pipe(
-        map(data => {
-          return data;
-        })
-      );
+    return this.http.get<UserInterface>(endpoint + "user", httpOptions).pipe(
+      map(data => {
+        return data;
+      })
+    );
   }
 
   private handleError<T>(operation = "operation", result?: T) {

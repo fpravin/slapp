@@ -1,5 +1,7 @@
 {
   "name": "slapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
