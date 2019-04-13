@@ -11,8 +11,9 @@ import {
 } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map, catchError, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 
-const endpoint = "http://127.0.0.1:8080/api/auth/";
+const endpoint = environment.apiEndpoint;
 const httpOptions = {
   headers: new HttpHeaders({
     "Content-Type": "application/json",
