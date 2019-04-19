@@ -15,6 +15,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { HttpService } from "./services/http.service";
 import { AuthenticationService } from "./services/authentication.service";
 
+import { GoogleMaps } from "@ionic-native/google-maps";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,7 +34,7 @@ import { AuthenticationService } from "./services/authentication.service";
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     HttpService,
-    AuthenticationService
+    GoogleMaps
   ],
   bootstrap: [AppComponent]
 })
