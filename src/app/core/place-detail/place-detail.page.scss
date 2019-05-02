@@ -1,0 +1,56 @@
+.header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(2px);
+  //   height: 100px;
+}
+
+.back-button {
+  background-image: url("../../../assets/icon/left-arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+  background-color: transparent;
+  margin: 0 10px;
+}
+
+.details-wrapper {
+  position: relative;
+}
+
+.base-details-wrapper {
+  max-height: 250px;
+  height: 250px;
+  background-image: url("../../../assets/placeimages/pub1.jpg");
+  background-clip: content-box;
+  background-origin: content-box;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.base-details {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.base-details > .name {
+  font-size: 38px;
+}
+
+.base-details > .category {
+  font-size: 18px;
+  line-height: 5px;
+}
+
+.rating {
+  margin-top: 12px;
+}
+
+.offer-details-wrapper {
+  padding: 20px;
+}

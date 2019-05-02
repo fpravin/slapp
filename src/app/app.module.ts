@@ -16,6 +16,7 @@ import { HttpService } from "./services/http.service";
 import { AuthenticationService } from "./services/authentication.service";
 
 import { GoogleMaps } from "@ionic-native/google-maps";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     IonicStorageModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,42 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <!-- <img class="header-image" src="../../../assets/placeimages/pub1.jpg" /> -->
+  <div class="details-wrapper">
+    <div class="base-details-wrapper">
+      <button class="back-button" (click)="goBack()"></button>
+      <div class="base-details">
+        <span class="name">{{ place.name }}</span>
+        <span class="category">{{ place.category }}</span>
+        <div class="rating">
+          <span *ngFor="let rating of ratings">
+            <img
+              width="6%"
+              class="rating-image"
+              src="../../../assets/icon/star.svg"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-details-wrapper">
+      <app-tabs>
+        <app-tab [tabTitle]="'Promotions'">
+          Tab 1 content
+        </app-tab>
+        <app-tab [tabTitle]="'Offers'">
+          Tab 2 content
+        </app-tab>
+      </app-tabs>
+    </div>
+  </div>
+</ion-content>

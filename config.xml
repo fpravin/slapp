@@ -88,4 +88,5 @@
     </plugin>
     <plugin name="cordova-plugin-browsersync" spec="~0.1.7" />
     <allow-navigation href="http://192.168.1.101:8100" sessionid="9dc8b2d8" />
+    <allow-navigation href="http://192.168.1.102:8100" sessionid="2ebbb4cb" />
 </widget>

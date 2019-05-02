@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  margin: 12px;
+}
+
+.search-wrapper {
+  height: 100%;
+}
+
+.search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10%;
+  margin: 6px 12px;
+}
+
+.search-results {
+  height: 90%;
+  overflow-y: scroll;
+  padding: 0 12px;
+}
+
+.search-result-card {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed;
+}
+
+.search-result-details {
+  flex: 0 0 86%;
+}
+
+.search-result-card > .pin-icon {
+  margin-right: 10px;
+}
+
+.search-result-card.search-result-details.name {
+}
+.search-result-card.search-result-details.category {
+}

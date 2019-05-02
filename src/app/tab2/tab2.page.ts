@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import { Platform } from "@ionic/angular";
-import { Map, latLng, tileLayer, Layer, marker } from "leaflet";
+// import { Map, latLng, tileLayer, Layer, marker } from "leaflet";
 import leaflet from "leaflet";
 
 import {
@@ -12,8 +12,11 @@ import {
   MarkerOptions,
   Marker,
   Environment,
-  GoogleMapsAnimation
+  GoogleMapsAnimation,
+  LatLng,
+  ILatLng
 } from "@ionic-native/google-maps/ngx";
+import { SearchResultSubscriberService } from "../core/search-result/search-result-subscriber.service";
 
 @Component({
   selector: "app-tab2",
@@ -21,18 +24,22 @@ import {
   styleUrls: ["tab2.page.scss"]
 })
 export class Tab2Page implements OnInit {
+  constructor(
+    private platform: Platform,
+    private renderer: Renderer2,
+    private searchResultSubscriberService: SearchResultSubscriberService
+  ) {
+    navigator.geolocation.getCurrentPosition(geoLocation => {
+      this.latLng = {
+        lat: geoLocation.coords.latitude,
+        lng: geoLocation.coords.longitude
+      };
+    });
+  }
   // map: Map;
   test: any;
   map: GoogleMap;
-
-  constructor(private platform: Platform) {
-    navigator.geolocation.getCurrentPosition(geoLocation => {
-      this.test = new leaflet.LatLng(
-        geoLocation.coords.latitude,
-        geoLocation.coords.longitude
-      );
-    });
-  }
+  latLng: ILatLng;
 
   async ngOnInit() {
     await this.platform.ready();
@@ -48,12 +55,11 @@ export class Tab2Page implements OnInit {
 
     const mapOptions: GoogleMapOptions = {
       camera: {
-        target: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        },
-        zoom: 18,
-        tilt: 30
+        target: this.latLng,
+        zoom: 13
+      },
+      controls: {
+        zoom: false
       }
     };
 
@@ -64,20 +70,56 @@ export class Tab2Page implements OnInit {
         title: "Ionic",
         icon: "blue",
         animation: GoogleMapsAnimation.DROP,
-        position: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        }
+        position: this.latLng
       });
+
+      this.map.setCameraTarget(this.latLng);
+      this.map.animateCamera({
+        target: this.latLng,
+        zoom: 16,
+        duration: 2000
+      });
+
       marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(d => {
         alert("clicked");
       });
 
-      this.map.on(GoogleMapsEvent.MAP_DRAG).subscribe(d => {
-        console.log(d);
+      this.map.on(GoogleMapsEvent.MAP_DRAG_START).subscribe(d => {
+        this.searchResultSubscriberService.hideModel();
+        this.renderer.removeClass(
+          document.querySelector("ion-tab-bar"),
+          "animate-in"
+        );
+        this.renderer.addClass(
+          document.querySelector("ion-tab-bar"),
+          "animate-out"
+        );
+      });
+
+      this.map.on(GoogleMapsEvent.MAP_DRAG_END).subscribe(d => {
+        this.renderer.removeClass(
+          document.querySelector("ion-tab-bar"),
+          "animate-out"
+        );
+        this.renderer.addClass(
+          document.querySelector("ion-tab-bar"),
+          "animate-in"
+        );
+      });
+
+      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(d => {
+        this.searchResultSubscriberService.hideModel();
       });
     });
   }
 
   ionViewDidEnter() {}
+
+  onFocus(e) {
+    this.searchResultSubscriberService.showModel();
+  }
+
+  onClear(e) {
+    this.searchResultSubscriberService.hideModel();
+  }
 }

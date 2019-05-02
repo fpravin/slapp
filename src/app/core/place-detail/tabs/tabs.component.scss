@@ -1,0 +1,29 @@
+.tab-close {
+  color: gray;
+  text-align: right;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul > li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+}
+
+.active {
+  border-bottom: 1px solid #ccc;
+}

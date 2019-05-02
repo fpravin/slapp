@@ -1,11 +1,13 @@
 ion-tab-bar {
-  height: 28px;
-  background: transparent;
+  height: 40px;
+  background: #fff;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   border: none;
+
+  transition: all 1s;
 }
 
 ion-tab-button {
@@ -18,10 +20,11 @@ ion-tab-button {
 
 ion-icon {
   font-size: 18px;
-  color: #000;
+  color: #989898;
   margin: 0;
 }
 
 ion-label {
-  color: #000;
+  color: #989898;
 }
+

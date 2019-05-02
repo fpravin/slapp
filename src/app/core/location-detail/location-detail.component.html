@@ -1,0 +1,75 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+    <!-- <img class="header-image" src="../../../assets/placeimages/pub1.jpg" /> -->
+    <div class="details-wrapper">
+        <div class="base-details-wrapper">
+            <button
+                class="back-button"
+                (click)="goBack()"
+            ></button>
+            <div class="base-details">
+                <span class="name">{{ place.name }}</span>
+                <span class="category">{{ place.category }}</span>
+                <div class="rating">
+                    <span *ngFor="let rating of ratings">
+                        <img
+                            width="6%"
+                            class="rating-image"
+                            src="../../../assets/icon/star.svg"
+                        >
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="offer-details-wrapper">
+            <div class="offer-header">
+                <h6>Promotions</h6>
+                <span>See all</span>
+            </div>
+
+            <div class="promotions-wrapper">
+                <!-- <div (click)="test('assets/promotions/Promo1.jpg')">
+                    <img src="assets/promotions/Promo1.jpg">
+                </div> -->
+                <div
+                    *ngFor="let promotion of promotions; let i = index;"
+                    [style.background-image]="'url('+promotion+')'"
+                    (click)="test(i)"
+                ></div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<aside
+    class="location-more-details"
+    #moreDetails
+>
+    <!-- <span
+        class="location-more-details-close"
+        (click)="close()"
+    >
+        &times;
+    </span> -->
+    <div [style.background-image]="'url('+imgPath+')'">
+        <img [src]="imgPath">
+    </div>
+
+    <!-- height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: unset;
+    background-size: contain; -->
+
+</aside>

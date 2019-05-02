@@ -23,9 +23,9 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    loadChildren: "./members/dashboard/dashboard.module#DashboardPageModule",
+    loadChildren: "./members/dashboard/dashboard.module#DashboardPageModule"
     // canActivate: [AuthGuard],
-  } 
+  }
 ];
 @NgModule({
   imports: [

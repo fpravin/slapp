@@ -1,11 +1,82 @@
 // http://ionicframework.com/docs/theming/
-@import '~@ionic/angular/css/core.css';
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
 
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Set variables for all modes */
+:root {
+  /* Set the background of the entire app */
+  // --ion-background-color: #ff3700;
+
+  /* Set the font family of the entire app */
+  // --ion-font-family: "Source Code Pro";
+  --ion-font-family: "Poppins";
+}
+
+// /* Set text color of the entire app for iOS only */
+// .ios {
+//   --ion-text-color: #000;
+// }
+
+// /* Set text color of the entire app for Material Design only */
+// .md {
+//   --ion-text-color: #222;
+// }
+
+.animate-out {
+  bottom: -40px !important;
+}
+
+.animate-in {
+  bottom: 0px !important;
+}
+
+// ion-modal {
+// --min-height: 55% !important;
+// height: 55% !important;
+// top: unset !important;
+// --width: 90% !important;
+// }
+
+// ion-modal > .modal-wrapper {
+//   border-top-left-radius: 30px !important;
+//   border-top-right-radius: 30px !important;
+// }
+
+// ion-toolbar {
+//   --background: transparent;
+//   --border-style: none;
+// }
+
+.search-result-model {
+  --min-height: 55% !important;
+  height: 55% !important;
+  top: unset !important;
+  --width: 90% !important;
+}
+
+.search-result-model > .modal-wrapper {
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+}
+
+.search-result-model > ion-backdrop {
+  width: 90% !important;
+  left: unset !important;
+  right: unset !important;
+  opacity: 0 !important;
+}
+
+.location-detail-model {
+  // --min-height: 90% !important;
+  // height: 90% !important;
+  // top: unset !important;
+  // --width: 90% !important;
+}
