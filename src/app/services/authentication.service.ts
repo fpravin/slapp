@@ -37,6 +37,7 @@ export class AuthenticationService {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         this.authenticationState.next(true);
+        this.router.navigate(["page/tabs/tab2"]);
       }
     });
   }
