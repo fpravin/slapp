@@ -55,21 +55,32 @@
     class="location-more-details"
     #moreDetails
 >
-    <!-- <span
-        class="location-more-details-close"
-        (click)="close()"
-    >
-        &times;
-    </span> -->
-    <div [style.background-image]="'url('+imgPath+')'">
-        <img [src]="imgPath">
+    <div>
+        <!-- <button (click)="close()">close</button> -->
+        <!-- <button (click)="prev()">prev</button> -->
+        <!-- <button (click)="next()">next</button> -->
+        <div class="progress-bar">
+            <span *ngFor="let promotionStory of promotionStories; let i = index;"></span>
+        </div>
     </div>
 
-    <!-- height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-origin: unset;
-    background-size: contain; -->
+    <span
+        *ngIf="showStoryNavButton"
+        class="navButton prev"
+        (click)="prev()"
+    ></span>
+    <span
+        *ngIf="showStoryNavButton"
+        class="navButton next"
+        (click)="next()"
+    ></span>
+    <div class="promotion-images">
+        <img
+            *ngFor="let promotionStory of promotionStories; let i = index;"
+            [src]="promotionStory"
+        >
+    </div>
+
+    <!-- [style.zIndex]="i" -->
 
 </aside>

@@ -2,7 +2,6 @@ import { Component, OnInit, Renderer2 } from "@angular/core";
 import { Platform } from "@ionic/angular";
 // import { Map, latLng, tileLayer, Layer, marker } from "leaflet";
 import leaflet from "leaflet";
-
 import {
   GoogleMaps,
   GoogleMap,
@@ -17,6 +16,7 @@ import {
   ILatLng
 } from "@ionic-native/google-maps/ngx";
 import { SearchResultSubscriberService } from "../core/search-result/search-result-subscriber.service";
+import * as Places from "../../assets/Places.json";
 
 @Component({
   selector: "app-tab2",
@@ -24,6 +24,15 @@ import { SearchResultSubscriberService } from "../core/search-result/search-resu
   styleUrls: ["tab2.page.scss"]
 })
 export class Tab2Page implements OnInit {
+
+
+  // map: Map;
+  test: any;
+  map: GoogleMap;
+  latLng: ILatLng;
+  places: any[] = Places["default"];
+
+
   constructor(
     private platform: Platform,
     private renderer: Renderer2,
@@ -36,10 +45,6 @@ export class Tab2Page implements OnInit {
       };
     });
   }
-  // map: Map;
-  test: any;
-  map: GoogleMap;
-  latLng: ILatLng;
 
   async ngOnInit() {
     await this.platform.ready();
@@ -60,7 +65,26 @@ export class Tab2Page implements OnInit {
       },
       controls: {
         zoom: false
-      }
+      },
+      styles: [
+        {
+          "featureType": "poi.business",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        },
+        {
+          "featureType": "poi.park",
+          "elementType": "labels.text",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        }
+      ]
     };
 
     this.map = GoogleMaps.create("map_canvas", mapOptions);
@@ -72,6 +96,10 @@ export class Tab2Page implements OnInit {
         animation: GoogleMapsAnimation.DROP,
         position: this.latLng
       });
+
+      this.markLocations();
+
+
 
       this.map.setCameraTarget(this.latLng);
       this.map.animateCamera({
@@ -113,7 +141,27 @@ export class Tab2Page implements OnInit {
     });
   }
 
-  ionViewDidEnter() {}
+  markLocations() {
+
+    this.places.forEach((v, i) => {
+      const x = v.latlang.split(",");
+
+      const latLng: ILatLng = {
+        lat: x[0],
+        lng: x[1]
+      };
+
+      const marker: Marker = this.map.addMarkerSync({
+        title: v.name,
+        icon: "blue",
+        animation: GoogleMapsAnimation.DROP,
+        position: latLng,
+      });
+    });
+
+  }
+
+  ionViewDidEnter() { }
 
   onFocus(e) {
     this.searchResultSubscriberService.showModel();

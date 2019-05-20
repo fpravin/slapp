@@ -87,7 +87,7 @@
   border-radius: 15px;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .promotions-wrapper img {
@@ -119,7 +119,7 @@
 .location-more-details {
   height: 0;
   position: absolute;
-  background-color: #fff;
+  background-color: #000;
   overflow: hidden;
 
   width: 100%;
@@ -134,18 +134,67 @@
 }
 
 .location-more-details.clicked {
-  overflow: hidden;
+  overflow: hidden; // If overflow auto shoud handel gesture events.
   // padding: 20px;
   height: 100%;
   // height: 408px;
 }
 
-.location-more-details div {
-  overflow: hidden;
+.location-more-details .promotion-images {
+  overflow: initial;
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  position: relative;
+  right: 0;
+  transition: all 0.5s ease;
 }
 
 .location-more-details-close {
   margin: auto;
   display: block;
   text-align: right;
+}
+
+.navButton {
+}
+
+.navButton.prev {
+  position: fixed;
+  top: 5%;
+  left: 0;
+
+  background-color: transparent;
+
+  z-index: 1;
+  width: 50%;
+  height: 95%;
+}
+.navButton.next {
+  position: fixed;
+  top: 5%;
+  right: 0;
+
+  background-color: transparent;
+
+  z-index: 1;
+  width: 50%;
+  height: 95%;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.progress-bar span {
+  flex-grow: 1;
+  height: 1px;
+  background: white;
+  margin: 0 5px;
+  border-radius: 70px;
 }

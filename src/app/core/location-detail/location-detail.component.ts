@@ -5,8 +5,6 @@ import {
   ElementRef,
   Renderer2
 } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Location } from "@angular/common";
 import * as Places from "../../../assets/Places.json";
 import { NavParams } from "@ionic/angular";
 import { LocationDetailService } from "./location-detail.service.js";
@@ -35,6 +33,10 @@ export class LocationDetailComponent implements OnInit {
   ratings: number[] = [];
   imgPath: string;
   promotions: string[];
+  promotionStories: string[];
+  tempPromotionStories: string[];
+  currentPos: number = 0;
+  showStoryNavButton: boolean = false;
 
   ngOnInit() {
     this.setRatings();
@@ -50,6 +52,8 @@ export class LocationDetailComponent implements OnInit {
       "assets/promotions/promo9.jpg",
       "assets/promotions/promo.png"
     ];
+    this.promotionStories = [...this.promotions];
+
   }
 
   setRatings() {
@@ -61,13 +65,32 @@ export class LocationDetailComponent implements OnInit {
   goBack() {
     this.locationDetailService.hideModel();
   }
-  test(i): void {
-    this.renderer.addClass(this.moreDetailElem.nativeElement, "clicked");
-    this.imgPath = this.promotions[i];
-    console.log(i);
+
+  test(i: number): void {
+    this.showStoryNavButton = true;
+    this.currentPos = window.innerWidth * i;
+    this.renderer.setStyle(document.querySelector(".promotion-images"), "right", this.currentPos + "px");
+
+    setTimeout(() => {
+      this.renderer.addClass(this.moreDetailElem.nativeElement, "clicked");
+    }, 500);
   }
 
   close(): void {
+    this.showStoryNavButton = false;
+    this.currentPos = 0;
     this.renderer.removeClass(this.moreDetailElem.nativeElement, "clicked");
   }
+
+
+  prev(): void {
+    this.currentPos -= window.innerWidth;
+    this.renderer.setStyle(document.querySelector(".promotion-images"), "right", this.currentPos + "px");
+  }
+  next(): void {
+    this.currentPos += window.innerWidth;
+    this.renderer.setStyle(document.querySelector(".promotion-images"), "right", this.currentPos + "px");
+  }
+
+
 }

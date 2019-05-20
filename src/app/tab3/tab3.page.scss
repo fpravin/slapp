@@ -1,1 +1,68 @@
+h5.title {
+  margin: 0 0 16px 0;
+}
 
+h5.title::after {
+  content: " ";
+  display: block;
+  border: 1px solid #002c7f;
+  width: 5%;
+}
+
+.fav-card-wrapper {
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+// .welcome-card {
+//   flex: 0 0 50%;
+// }
+
+.fav-card-wrapper .fav-card {
+  width: 47.6%;
+  float: left;
+  margin-bottom: 20px;
+  height: 130px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.fav-card-wrapper .fav-card:nth-child(odd) {
+  margin-right: 8px;
+}
+
+.fav-card-wrapper .fav-card:nth-child(even) {
+  margin-left: 8px;
+}
+
+h6 {
+  margin: 0 0 5px 0;
+  text-align: center;
+  font-size: 12px;
+}
+
+p {
+  margin: 0;
+  font-size: 10px;
+}
+
+.fav-card img {
+  border-radius: 5px;
+  // box-shadow: 0 10px 6px -6px #777;
+}
+
+.fav-details {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #e8f8fd;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 0 10px 6px -6px #a4a4a4;
+}

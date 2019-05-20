@@ -5,7 +5,10 @@
         "latlang": "6.9097428,79.8742793",
         "category": "Pub",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 3
+        "rating": 3,
+        "images": [
+            "assets/placeimages/pub1.jpg"
+        ]
     },
     {
         "id": 2,
@@ -13,7 +16,8 @@
         "latlang": "6.9338436,79.8437563",
         "category": "Cafe",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 2
+        "rating": 2,
+        "images": []
     },
     {
         "id": 3,
@@ -21,7 +25,8 @@
         "latlang": "6.9340233,79.8436866",
         "category": "Coffee shop",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 4
+        "rating": 4,
+        "images": []
     },
     {
         "id": 4,
@@ -29,15 +34,19 @@
         "latlang": "6.9083237,79.8631768",
         "category": "Pub",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 5
+        "rating": 5,
+        "images": ["assets/placeimages/floorByO.jpg"]
     },
     {
         "id": 5,
-        "name": "TGI Fridays\n",
+        "name": "TGI Fridays",
         "latlang": "6.9330089,79.8434432",
         "category": "Resraurent",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 1
+        "rating": 1,
+        "images": [
+            "assets/placeimages/tgif.jpg"
+        ]
     },
     {
         "id": 6,
@@ -45,7 +54,8 @@
         "latlang": "6.9332911,79.8438576",
         "category": "Hotel",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 2
+        "rating": 2,
+        "images": []
     },
     {
         "id": 7,
@@ -53,7 +63,8 @@
         "latlang": "6.9335733,79.842617",
         "category": "Resraurent",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 3
+        "rating": 3,
+        "images": []
     },
     {
         "id": 8,
@@ -61,7 +72,8 @@
         "latlang": "6.9335733,79.842617",
         "category": "Pub",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 4
+        "rating": 4,
+        "images": []
     },
     {
         "id": 9,
@@ -69,7 +81,8 @@
         "latlang": "6.9335733,79.842617",
         "category": "Pub",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 5
+        "rating": 5,
+        "images": []
     },
     {
         "id": 10,
@@ -77,7 +90,10 @@
         "latlang": "6.9335733,79.842617",
         "category": "Hotel",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 1
+        "rating": 1,
+        "images": [
+            "assets/placeimages/steuart.jpg"
+        ]
     },
     {
         "id": 11,
@@ -85,7 +101,8 @@
         "latlang": "6.9338263,79.8437436",
         "category": "Cafe",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 2
+        "rating": 2,
+        "images": []
     },
     {
         "id": 12,
@@ -93,7 +110,10 @@
         "latlang": "6.9333883,79.8436859",
         "category": "Pub",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 4
+        "rating": 4,
+        "images": [
+            "assets/placeimages/nextInnings.jpg"
+        ]
     },
     {
         "id": 13,
@@ -101,7 +121,8 @@
         "latlang": "6.9332911,79.8438576",
         "category": "Resraurent",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 3
+        "rating": 3,
+        "images": []
     },
     {
         "id": 14,
@@ -109,7 +130,8 @@
         "latlang": "6.9334815,79.843702",
         "category": "Resraurent",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 5
+        "rating": 5,
+        "images": []
     },
     {
         "id": 15,
@@ -117,6 +139,7 @@
         "latlang": "6.9341491,79.8435981",
         "category": "Resraurent",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
-        "rating": 2
+        "rating": 2,
+        "images": []
     }
 ]
