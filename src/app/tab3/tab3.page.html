@@ -1,13 +1,16 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
-<ion-content>
-
-
-
+<ion-content padding>
+    <h5 class="title">For You</h5>
+    <div class="fav-card-wrapper">
+        <div
+            class="fav-card"
+            *ngFor="let fav of favourites; let i = index;"
+            [style.backgroundImage]="'url('+fav.images+')'"
+        >
+            <!-- <img src="{{fav.images}}"> -->
+            <div class="fav-details">
+                <h6>{{fav.name}}</h6>
+                <p>{{fav.category}}</p>
+            </div>
+        </div>
+    </div>
 </ion-content>

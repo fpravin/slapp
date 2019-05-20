@@ -7,6 +7,7 @@ import { TabsPageRoutingModule } from "./tabs.router.module";
 
 import { TabsPage } from "./tabs.page";
 import { DashboardPageModule } from "../members/dashboard/dashboard.module";
+import { PlaceDetailPageModule } from "../core/place-detail/place-detail.module";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { DashboardPageModule } from "../members/dashboard/dashboard.module";
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    DashboardPageModule
+    DashboardPageModule,
+    PlaceDetailPageModule
   ],
   declarations: [TabsPage]
 })

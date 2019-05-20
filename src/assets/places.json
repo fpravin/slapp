@@ -1,0 +1,145 @@
+[
+    {
+        "id": 1,
+        "name": "Mintage",
+        "latlang": "6.9097428,79.8742793",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 3,
+        "images": [
+            "assets/placeimages/pub1.jpg"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Fairway Colombo\n",
+        "latlang": "6.9338436,79.8437563",
+        "category": "Cafe",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 2,
+        "images": []
+    },
+    {
+        "id": 3,
+        "name": "Java Lounge",
+        "latlang": "6.9340233,79.8436866",
+        "category": "Coffee shop",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 4,
+        "images": []
+    },
+    {
+        "id": 4,
+        "name": "Floor by O!",
+        "latlang": "6.9083237,79.8631768",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 5,
+        "images": ["assets/placeimages/floorByO.jpg"]
+    },
+    {
+        "id": 5,
+        "name": "TGI Fridays",
+        "latlang": "6.9330089,79.8434432",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 1,
+        "images": [
+            "assets/placeimages/tgif.jpg"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Colombo City hotel",
+        "latlang": "6.9332911,79.8438576",
+        "category": "Hotel",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 2,
+        "images": []
+    },
+    {
+        "id": 7,
+        "name": "Ministry Of Crab",
+        "latlang": "6.9335733,79.842617",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 3,
+        "images": []
+    },
+    {
+        "id": 8,
+        "name": "The Re.Pub.Lk",
+        "latlang": "6.9335733,79.842617",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 4,
+        "images": []
+    },
+    {
+        "id": 9,
+        "name": "Taphouse by RnR",
+        "latlang": "6.9335733,79.842617",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 5,
+        "images": []
+    },
+    {
+        "id": 10,
+        "name": "The Steuart by Citrus",
+        "latlang": "6.9335733,79.842617",
+        "category": "Hotel",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 1,
+        "images": [
+            "assets/placeimages/steuart.jpg"
+        ]
+    },
+    {
+        "id": 11,
+        "name": "The t-Lounge by Dilmah",
+        "latlang": "6.9338263,79.8437436",
+        "category": "Cafe",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 2,
+        "images": []
+    },
+    {
+        "id": 12,
+        "name": "Next Innings",
+        "latlang": "6.9333883,79.8436859",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 4,
+        "images": [
+            "assets/placeimages/nextInnings.jpg"
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Chinese Dragon Cafe",
+        "latlang": "6.9332911,79.8438576",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 3,
+        "images": []
+    },
+    {
+        "id": 14,
+        "name": "Ikoi Tei by WIP",
+        "latlang": "6.9334815,79.843702",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 5,
+        "images": []
+    },
+    {
+        "id": 15,
+        "name": "BLACK PEPPER",
+        "latlang": "6.9341491,79.8435981",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 2,
+        "images": []
+    }
+]

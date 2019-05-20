@@ -75,3 +75,27 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+// Font Source
+// https://fonts.google.com/?selection.family=Poppins:300
+
+@font-face {
+  font-family: "poppins";
+  src: url("../assets/fonts/Poppins-Light.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../assets/fonts/Poppins-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("../assets/fonts/Poppins-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}

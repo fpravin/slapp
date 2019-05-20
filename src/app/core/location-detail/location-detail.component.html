@@ -1,0 +1,86 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+    <!-- <img class="header-image" src="../../../assets/placeimages/pub1.jpg" /> -->
+    <div class="details-wrapper">
+        <div class="base-details-wrapper">
+            <button
+                class="back-button"
+                (click)="goBack()"
+            ></button>
+            <div class="base-details">
+                <span class="name">{{ place.name }}</span>
+                <span class="category">{{ place.category }}</span>
+                <div class="rating">
+                    <span *ngFor="let rating of ratings">
+                        <img
+                            width="6%"
+                            class="rating-image"
+                            src="../../../assets/icon/star.svg"
+                        >
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="offer-details-wrapper">
+            <div class="offer-header">
+                <h6>Promotions</h6>
+                <span>See all</span>
+            </div>
+
+            <div class="promotions-wrapper">
+                <!-- <div (click)="test('assets/promotions/Promo1.jpg')">
+                    <img src="assets/promotions/Promo1.jpg">
+                </div> -->
+                <div
+                    *ngFor="let promotion of promotions; let i = index;"
+                    [style.background-image]="'url('+promotion+')'"
+                    (click)="test(i)"
+                ></div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<aside
+    class="location-more-details"
+    #moreDetails
+>
+    <div>
+        <!-- <button (click)="close()">close</button> -->
+        <!-- <button (click)="prev()">prev</button> -->
+        <!-- <button (click)="next()">next</button> -->
+        <div class="progress-bar">
+            <span *ngFor="let promotionStory of promotionStories; let i = index;"></span>
+        </div>
+    </div>
+
+    <span
+        *ngIf="showStoryNavButton"
+        class="navButton prev"
+        (click)="prev()"
+    ></span>
+    <span
+        *ngIf="showStoryNavButton"
+        class="navButton next"
+        (click)="next()"
+    ></span>
+    <div class="promotion-images">
+        <img
+            *ngFor="let promotionStory of promotionStories; let i = index;"
+            [src]="promotionStory"
+        >
+    </div>
+
+    <!-- [style.zIndex]="i" -->
+
+</aside>

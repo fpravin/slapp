@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "name": "Mintage",
+        "latlang": "6.9097428,79.8742793",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 3,
+        "images": [
+            "assets/placeimages/pub1.jpg"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "TGI Fridays",
+        "latlang": "6.9330089,79.8434432",
+        "category": "Resraurent",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 1,
+        "images": [
+            "assets/placeimages/tgif.jpg"
+        ]
+    },
+    {
+        "id": 10,
+        "name": "The Steuart by Citrus",
+        "latlang": "6.9335733,79.842617",
+        "category": "Hotel",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 1,
+        "images": [
+            "assets/placeimages/steuart.jpg"
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Next Innings",
+        "latlang": "6.9333883,79.8436859",
+        "category": "Pub",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus mauris, ultrices ut diam eget, auctor ultrices orci. Etiam id consectetur ante, eu sodales velit. Integer eget pulvinar elit. Cras.",
+        "rating": 4,
+        "images": [
+            "assets/placeimages/nextInnings.jpg"
+        ]
+    }
+]

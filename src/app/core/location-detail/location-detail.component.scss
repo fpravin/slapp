@@ -1,0 +1,200 @@
+.header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(2px);
+  //   height: 100px;
+}
+
+.back-button {
+  background-image: url("../../../assets/icon/left-arrow.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 10px;
+  background-color: transparent;
+  margin: 0 10px;
+}
+
+.details-wrapper {
+  position: relative;
+}
+
+.base-details-wrapper {
+  max-height: 250px;
+  height: 250px;
+  background-image: url("../../../assets/placeimages/pub1.jpg");
+  background-clip: content-box;
+  background-origin: content-box;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.base-details {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.base-details > .name {
+  font-size: 38px;
+}
+
+.base-details > .category {
+  font-size: 18px;
+  line-height: 5px;
+}
+
+.rating {
+  margin-top: 12px;
+}
+
+.offer-details-wrapper {
+  padding: 20px 0;
+}
+
+.offer-details-wrapper h6 {
+}
+
+.promotions-wrapper {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  overflow-x: scroll;
+  margin: 20px 0;
+}
+
+.promotions-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.promotions-wrapper div {
+  // min-width: 80%; // can make 100% and need to scroll anim
+
+  // min-width: 260px;
+  // max-height: 160px;
+
+  // overflow: hidden;
+  // margin-right: 15px;
+  // border-radius: 15px;
+
+  height: 200px;
+  min-width: 130px;
+  border-radius: 15px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+
+.promotions-wrapper img {
+  // flex: 1;
+  // margin-right: 20px;
+  // border-radius: 20px;
+}
+
+.promotions-wrapper > div:first-child {
+  margin-left: 10px;
+}
+
+.offer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-right: 10px;
+}
+
+.offer-header > h6 {
+  margin: 0;
+}
+
+.offer-header > span {
+  font-size: 12px;
+}
+
+.location-more-details {
+  height: 0;
+  position: absolute;
+  background-color: #000;
+  overflow: hidden;
+
+  width: 100%;
+  padding: 0px;
+
+  -webkit-transition: all 0.5s ease; /* Safari */
+  transition: all 0.5s ease;
+
+  // top: 252px;
+  bottom: 0;
+  left: 0;
+}
+
+.location-more-details.clicked {
+  overflow: hidden; // If overflow auto shoud handel gesture events.
+  // padding: 20px;
+  height: 100%;
+  // height: 408px;
+}
+
+.location-more-details .promotion-images {
+  overflow: initial;
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  position: relative;
+  right: 0;
+  transition: all 0.5s ease;
+}
+
+.location-more-details-close {
+  margin: auto;
+  display: block;
+  text-align: right;
+}
+
+.navButton {
+}
+
+.navButton.prev {
+  position: fixed;
+  top: 5%;
+  left: 0;
+
+  background-color: transparent;
+
+  z-index: 1;
+  width: 50%;
+  height: 95%;
+}
+.navButton.next {
+  position: fixed;
+  top: 5%;
+  right: 0;
+
+  background-color: transparent;
+
+  z-index: 1;
+  width: 50%;
+  height: 95%;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.progress-bar span {
+  flex-grow: 1;
+  height: 1px;
+  background: white;
+  margin: 0 5px;
+  border-radius: 70px;
+}
