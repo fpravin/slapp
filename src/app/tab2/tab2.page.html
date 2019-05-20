@@ -7,8 +7,11 @@
 </ion-header> -->
 
 <ion-content>
-    <div class="loc" >
-        <button (click)="goTo()" ></button>
-    </div>
-    <div id="map" style="width:100%; height:100%;"></div>
+  <div class="search-wrapper">
+    <!-- <img class="menu-icon" src="../../assets/icon/menu-options.svg" /> -->
+    <ion-searchbar (ionClear)="onClear($event)" (ionFocus)="onFocus($event)"></ion-searchbar>
+  </div>
+
+  <div id="map_canvas"></div>
 </ion-content>
+
