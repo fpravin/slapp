@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint : "http://192.168.1.102:8080/api/auth/"
+  apiEndpoint : "http://192.168.1.101:8080/api/auth/"
 };
 
 /*
