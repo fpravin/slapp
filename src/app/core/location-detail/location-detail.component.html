@@ -1,13 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="goBack()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
     <!-- <img class="header-image" src="../../../assets/placeimages/pub1.jpg" /> -->
     <div class="details-wrapper">
@@ -18,7 +8,17 @@
             ></button>
             <div class="base-details">
                 <span class="name">{{ place.name }}</span>
-                <span class="category">{{ place.category }}</span>
+                <!-- <span class="category">{{ place.category }}</span> -->
+
+                <div class="category-wrapper">
+                    <span
+                        class="category"
+                        *ngFor="let cat of place.category"
+                    >
+                        {{ cat.category }}
+                    </span>
+                </div>
+
                 <div class="rating">
                     <span *ngFor="let rating of ratings">
                         <img
@@ -31,11 +31,15 @@
             </div>
         </div>
 
+
+
         <div class="offer-details-wrapper">
             <div class="offer-header">
                 <h6>Promotions</h6>
                 <span>See all</span>
             </div>
+
+
 
             <div class="promotions-wrapper">
                 <!-- <div (click)="test('assets/promotions/Promo1.jpg')">
@@ -51,6 +55,8 @@
     </div>
 </ion-content>
 
+
+
 <aside
     class="location-more-details"
     #moreDetails
@@ -63,6 +69,8 @@
             <span *ngFor="let promotionStory of promotionStories; let i = index;"></span>
         </div>
     </div>
+
+
 
     <span
         *ngIf="showStoryNavButton"
@@ -81,6 +89,10 @@
         >
     </div>
 
+
+
     <!-- [style.zIndex]="i" -->
+
+
 
 </aside>

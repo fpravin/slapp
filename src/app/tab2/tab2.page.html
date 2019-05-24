@@ -1,17 +1,36 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <div class="search-wrapper">
-    <!-- <img class="menu-icon" src="../../assets/icon/menu-options.svg" /> -->
-    <ion-searchbar (ionClear)="onClear($event)" (ionFocus)="onFocus($event)"></ion-searchbar>
-  </div>
-
-  <div id="map_canvas"></div>
+    <div class="search-wrapper">
+        <!-- <img class="menu-icon" src="../../assets/icon/menu-options.svg" /> -->
+        <ion-searchbar
+            #PlaceSrarchBar
+            (ionChange)="onChange($event)"
+            (ionClear)="onClear($event)"
+            (ionFocus)="onFocus($event)"
+            debounce="500"
+        ></ion-searchbar>
+    </div>
+    <div
+        #filteWrapper
+        class="filter-wrapper"
+    >
+        <div (click)="filterPlaces('restaurent')">
+            <img src="assets/icon/restaurent.png">
+        </div>
+        <div (click)="filterPlaces('pub')">
+            <img src="assets/icon/pub.png">
+        </div>
+        <div (click)="filterPlaces('coffee-shop')">
+            <img src="assets/icon/coffee-shop.png">
+        </div>
+        <div (click)="filterPlaces('shopping')">
+            <img src="assets/icon/shopping.png">
+        </div>
+        <div (click)="filterPlaces('hotel')">
+            <img src="assets/icon/hotel.png">
+        </div>
+    </div>
+    <div #forYou class="for-you">
+        <img width="65%" src="assets/icon/for-you.svg">
+    </div>
+    <div id="map_canvas"></div>
 </ion-content>
-

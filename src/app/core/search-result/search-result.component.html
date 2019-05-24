@@ -1,28 +1,44 @@
-<!-- <p (click)="close()">
-  search-result works!
-</p> -->
-
 <div class="search-wrapper">
-  <div class="search-header">
-    <span>Found Matches</span>
-    <img width="2.5%" (click)="close()" src="../../../assets/icon/cancel.svg" />
-  </div>
-  <div class="search-results">
-    <div
-      (click)="routeTo(place)"
-      *ngFor="let place of places"
-      class="search-result-card"
-    >
-      <img
-        class="pin-icon"
-        width="8%"
-        src="../../../assets/icon/placeholder.svg"
-      />
-      <div class="search-result-details">
-        <div class="name">{{ place.name }}</div>
-        <div class="category">{{ place.category }}</div>
-      </div>
-      <img width="3%" src="../../../assets/icon/arrow-point-to-right.svg" />
+    <div class="search-header">
+        <span>{{title}}</span>
+        <img
+            width="2.5%"
+            (click)="close()"
+            src="../../../assets/icon/cancel.svg"
+        >
     </div>
-  </div>
+    <div class="search-results">
+        <div *ngIf="!isReceltlySearchAvailable; else noRecentSearches">
+            <div
+                (click)="goTo(place)"
+                *ngFor="let place of places"
+                class="search-result-card"
+            >
+                <img
+                    class="pin-icon"
+                    width="8%"
+                    src="../../../assets/icon/placeholder.svg"
+                >
+                <div class="search-result-details">
+                    <div class="name">{{ place.name }}</div>
+                    <!-- <div class="category">{{ place.category }}</div> -->
+                    <div class="category-wrapper">
+                        <div
+                            class="category"
+                            *ngFor="let cat of place.category"
+                        >
+                            {{ cat.category }}
+                        </div>
+                    </div>
+                </div>
+                <img
+                    width="3%"
+                    src="../../../assets/icon/arrow-point-to-right.svg"
+                >
+            </div>
+        </div>
+        <ng-template #noRecentSearches>
+            <div class="no-recent-searchers">Nothing yet.</div>
+        </ng-template>
+    </div>
 </div>

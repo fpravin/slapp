@@ -20,6 +20,7 @@ const TOKEN_KEY = "auth-token";
 })
 export class AuthenticationService {
   public authenticationState = new BehaviorSubject(false);
+  token: string = "";
 
   constructor(
     private storage: Storage,
@@ -36,6 +37,7 @@ export class AuthenticationService {
   checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
+        this.token = res;
         this.authenticationState.next(true);
         this.router.navigate(["page/tabs/tab2"]);
       }
@@ -85,5 +87,9 @@ export class AuthenticationService {
 
   isAuthenticated() {
     return this.authenticationState.value;
+  }
+
+  get getToken(): string {
+    return this.token;
   }
 }

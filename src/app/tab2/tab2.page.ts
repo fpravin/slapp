@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from "@angular/core";
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/core";
 import { Platform } from "@ionic/angular";
 // import { Map, latLng, tileLayer, Layer, marker } from "leaflet";
 import leaflet from "leaflet";
@@ -17,26 +17,37 @@ import {
 } from "@ionic-native/google-maps/ngx";
 import { SearchResultSubscriberService } from "../core/search-result/search-result-subscriber.service";
 import * as Places from "../../assets/Places.json";
+import { PlaceService } from "../services/place.service";
+import { Place } from "../interfaces";
+import { Storage } from "@ionic/storage";
+import { IonSearchbar } from "@ionic/angular";
 
 @Component({
   selector: "app-tab2",
   templateUrl: "tab2.page.html",
   styleUrls: ["tab2.page.scss"]
 })
+
 export class Tab2Page implements OnInit {
 
+  @ViewChild("PlaceSrarchBar") placeSrarchBar: IonSearchbar;
+  @ViewChild("filteWrapper") filteWrapperElement: ElementRef;
+  @ViewChild("forYou") forYouElement: ElementRef;
 
   // map: Map;
   test: any;
   map: GoogleMap;
   latLng: ILatLng;
-  places: any[] = Places["default"];
+  // places: any[] = Places["default"];
+  places: Place[] = [];
 
 
   constructor(
     private platform: Platform,
     private renderer: Renderer2,
-    private searchResultSubscriberService: SearchResultSubscriberService
+    private searchResultSubscriberService: SearchResultSubscriberService,
+    private placeService: PlaceService,
+    private storage: Storage
   ) {
     navigator.geolocation.getCurrentPosition(geoLocation => {
       this.latLng = {
@@ -49,6 +60,10 @@ export class Tab2Page implements OnInit {
   async ngOnInit() {
     await this.platform.ready();
     await this.loadMap();
+
+    this.storage.get("place").then(res => {
+      if (res) { this.places = res; }
+    });
   }
 
   loadMap() {
@@ -92,7 +107,9 @@ export class Tab2Page implements OnInit {
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       const marker: Marker = this.map.addMarkerSync({
         title: "Ionic",
-        icon: "blue",
+        icon: {
+          url: "assets/icon/icon-marker-user.png",
+        },
         animation: GoogleMapsAnimation.DROP,
         position: this.latLng
       });
@@ -122,6 +139,11 @@ export class Tab2Page implements OnInit {
           document.querySelector("ion-tab-bar"),
           "animate-out"
         );
+
+        this.renderer.removeClass(this.filteWrapperElement.nativeElement, "animate-in");
+        this.renderer.addClass(this.filteWrapperElement.nativeElement, "animate-out");
+        this.renderer.removeClass(this.forYouElement.nativeElement, "animate-in");
+        this.renderer.addClass(this.forYouElement.nativeElement, "animate-out");
       });
 
       this.map.on(GoogleMapsEvent.MAP_DRAG_END).subscribe(d => {
@@ -133,6 +155,11 @@ export class Tab2Page implements OnInit {
           document.querySelector("ion-tab-bar"),
           "animate-in"
         );
+
+        this.renderer.removeClass(this.filteWrapperElement.nativeElement, "animate-out");
+        this.renderer.addClass(this.filteWrapperElement.nativeElement, "animate-in");
+        this.renderer.removeClass(this.forYouElement.nativeElement, "animate-out");
+        this.renderer.addClass(this.forYouElement.nativeElement, "animate-in");
       });
 
       this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(d => {
@@ -147,13 +174,19 @@ export class Tab2Page implements OnInit {
       const x = v.latlang.split(",");
 
       const latLng: ILatLng = {
-        lat: x[0],
-        lng: x[1]
+        lat: +x[0],
+        lng: +x[1]
       };
 
       const marker: Marker = this.map.addMarkerSync({
         title: v.name,
-        icon: "blue",
+        icon: {
+          url: "assets/icon/icon-marker.png",
+          size: {
+            width: 16,
+            height: 16
+          }
+        },
         animation: GoogleMapsAnimation.DROP,
         position: latLng,
       });
@@ -163,11 +196,26 @@ export class Tab2Page implements OnInit {
 
   ionViewDidEnter() { }
 
-  onFocus(e) {
-    this.searchResultSubscriberService.showModel();
-  }
-
   onClear(e) {
     this.searchResultSubscriberService.hideModel();
+  }
+
+
+  onFocus() {
+    this.searchResultSubscriberService.showModel();
+    setTimeout(() => {
+      this.placeSrarchBar.setFocus();
+    }, 100);
+  }
+
+  onChange(event: any): void {
+    this.placeSrarchBar.setFocus();
+    this.searchResultSubscriberService.filteredPlace(event["detail"]["value"].toLowerCase());
+  }
+
+  filterPlaces(category: string): void {
+    switch (category) {
+      // case 'restaurent' : 
+    }
   }
 }

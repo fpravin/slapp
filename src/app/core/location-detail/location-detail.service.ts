@@ -10,9 +10,10 @@ export class LocationDetailService implements OnInit {
   public isOpen = new BehaviorSubject<boolean>(false);
   locationDetailModel: any;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async showModel(id) {
     // if (!this.isOpen.value) {
