@@ -12,3 +12,9 @@ export interface Place {
     updated_at: string;
     category: Category[];
 }
+
+// interface Category {
+//     id: number;
+//     category_id: number;
+//     category: string;
+// }

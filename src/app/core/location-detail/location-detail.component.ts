@@ -8,7 +8,7 @@ import {
 } from "@angular/core";
 import * as Places from "../../../assets/Places.json";
 import { NavParams } from "@ionic/angular";
-import { LocationDetailService } from "./location-detail.service.js";
+import { LocationDetailService } from "../../services/subscriber";
 import { Storage } from "@ionic/storage";
 import { Place } from "src/app/interfaces/index.js";
 

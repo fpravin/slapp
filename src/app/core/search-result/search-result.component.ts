@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { SearchResultSubscriberService } from "./search-result-subscriber.service";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import * as Places from "../../../assets/Places.json";
 import { Router } from "@angular/router";
-import { LocationDetailService } from "../location-detail/location-detail.service";
+import { LocationDetailService, SearchResultService } from "../../services/subscriber";
 import { Storage } from "@ionic/storage";
 import { Place } from "src/app/interfaces";
+import { LocationDetailComponent } from "../location-detail/location-detail.component";
 
 @Component({
   selector: "app-search-result",
@@ -27,13 +27,13 @@ export class SearchResultComponent implements OnInit {
   isReceltlySearchAvailable: boolean = true;
 
   constructor(
-    private searchResultSubscriberService: SearchResultSubscriberService,
+    private searchResultService: SearchResultService,
     private locationDetailService: LocationDetailService,
     private router: Router,
     private storage: Storage
   ) {
 
-    this.searchResultSubscriberService.filterPlace.pipe(takeUntil(this.destroySubject$)).subscribe((text) => {
+    this.searchResultService.filterPlace.pipe(takeUntil(this.destroySubject$)).subscribe((text) => {
 
       const filteredPlaces: Place[] = this.tempPlace.filter(place => {
         return place.name.toLowerCase().includes(text);
@@ -71,12 +71,12 @@ export class SearchResultComponent implements OnInit {
   }
 
   close() {
-    this.searchResultSubscriberService.hideModel();
+    this.searchResultService.hideModel();
   }
 
   goTo(place) {
-    this.searchResultSubscriberService.hideModel();
-    this.locationDetailService.showModel(place.id);
+    this.searchResultService.hideModel();
+    this.locationDetailService.showModel(LocationDetailComponent, place.id);
 
     const placeAlreadyAdded = this.recentlySearchedPlaces.find((p) => {
       return place.id === p.id;

@@ -1,7 +1,7 @@
-import { LocationDetailComponent } from "./location-detail.component";
 import { ModalController } from "@ionic/angular";
 import { Injectable, Output, EventEmitter, OnInit } from "@angular/core";
 import { Subject, BehaviorSubject } from "rxjs";
+// import { LocationDetailComponent } from "src/app/core/location-detail/location-detail.component";
 
 @Injectable({
   providedIn: "root"
@@ -15,19 +15,19 @@ export class LocationDetailService implements OnInit {
   ngOnInit() {
   }
 
-  async showModel(id) {
-    // if (!this.isOpen.value) {
-    this.isOpen.next(true);
-    this.locationDetailModel = await this.modalController.create({
-      component: LocationDetailComponent,
-      componentProps: { id: id },
-      showBackdrop: true,
-      backdropDismiss: true,
-      cssClass: "location-detail-model"
-    });
+  async showModel(component, id) {
+    if (!this.isOpen.value) {
+      this.isOpen.next(true);
+      this.locationDetailModel = await this.modalController.create({
+        component: component,
+        componentProps: { id: id },
+        showBackdrop: true,
+        backdropDismiss: true,
+        cssClass: "location-detail-model"
+      });
 
-    return await this.locationDetailModel.present();
-    // }
+      return await this.locationDetailModel.present();
+    }
   }
 
   hideModel() {

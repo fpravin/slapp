@@ -37,10 +37,10 @@
   margin-right: 10px;
 }
 
-.search-result-card.search-result-details.name {
-}
-.search-result-card.search-result-details.category {
-}
+// .search-result-card.search-result-details.name {
+// }
+// .search-result-card.search-result-details.category {
+// }
 
 .name {
   color: #535353;
@@ -59,7 +59,7 @@
 .category-wrapper {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .category-wrapper > .category:last-child {

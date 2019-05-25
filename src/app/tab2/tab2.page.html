@@ -13,24 +13,22 @@
         #filteWrapper
         class="filter-wrapper"
     >
-        <div (click)="filterPlaces('restaurent')">
-            <img src="assets/icon/restaurent.png">
-        </div>
-        <div (click)="filterPlaces('pub')">
-            <img src="assets/icon/pub.png">
-        </div>
-        <div (click)="filterPlaces('coffee-shop')">
-            <img src="assets/icon/coffee-shop.png">
-        </div>
-        <div (click)="filterPlaces('shopping')">
-            <img src="assets/icon/shopping.png">
-        </div>
-        <div (click)="filterPlaces('hotel')">
-            <img src="assets/icon/hotel.png">
+        <div *ngFor="let cat of category">
+            <img
+                src="{{cat.icon}}"
+                (click)="filterPlaces($event,cat)"
+            >
         </div>
     </div>
-    <div #forYou class="for-you">
-        <img width="65%" src="assets/icon/for-you.svg">
+    <div
+        #forYou
+        class="for-you"
+        (click)="filterPlaces('forYou')"
+    >
+        <img
+            width="65%"
+            src="assets/icon/for-you.svg"
+        >
     </div>
     <div id="map_canvas"></div>
 </ion-content>

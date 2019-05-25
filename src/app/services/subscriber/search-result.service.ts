@@ -1,12 +1,14 @@
 import { ModalController } from "@ionic/angular";
 import { Injectable, Output, EventEmitter, OnInit } from "@angular/core";
 import { Subject, BehaviorSubject } from "rxjs";
-import { SearchResultComponent } from "./search-result.component";
 import { Place } from "src/app/interfaces";
+
 @Injectable({
   providedIn: "root"
 })
-export class SearchResultSubscriberService implements OnInit {
+
+export class SearchResultService {
+
   // @Output() toggleChange: EventEmitter<boolean> = new EventEmitter();
   @Output() filterPlace: EventEmitter<string> = new EventEmitter();
   public isOpen = new BehaviorSubject<boolean>(false);
@@ -14,16 +16,14 @@ export class SearchResultSubscriberService implements OnInit {
 
   constructor(private modalController: ModalController) { }
 
-  ngOnInit() { }
-
   // toggleAssistantPanel(value: boolean): void {
   //   this.toggleChange.emit(value);
   // }
 
-  async showModel(data?: Place[]) {
+  async showModel(component, data?: Place[]) {
     if (!this.isOpen.value) {
       this.modal = await this.modalController.create({
-        component: SearchResultComponent,
+        component: component,
         componentProps: { value: data },
         showBackdrop: true,
         cssClass: "search-result-model"

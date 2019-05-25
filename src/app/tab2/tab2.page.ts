@@ -1,7 +1,5 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { Platform } from "@ionic/angular";
-// import { Map, latLng, tileLayer, Layer, marker } from "leaflet";
-import leaflet from "leaflet";
 import {
   GoogleMaps,
   GoogleMap,
@@ -15,12 +13,13 @@ import {
   LatLng,
   ILatLng
 } from "@ionic-native/google-maps/ngx";
-import { SearchResultSubscriberService } from "../core/search-result/search-result-subscriber.service";
+import { SearchResultService } from "../services/subscriber";
 import * as Places from "../../assets/Places.json";
 import { PlaceService } from "../services/place.service";
-import { Place } from "../interfaces";
+import { Place, Category } from "../interfaces";
 import { Storage } from "@ionic/storage";
 import { IonSearchbar } from "@ionic/angular";
+import { SearchResultComponent } from "../core/search-result/search-result.component";
 
 @Component({
   selector: "app-tab2",
@@ -28,7 +27,7 @@ import { IonSearchbar } from "@ionic/angular";
   styleUrls: ["tab2.page.scss"]
 })
 
-export class Tab2Page implements OnInit {
+export class Tab2Page implements OnInit, AfterViewInit {
 
   @ViewChild("PlaceSrarchBar") placeSrarchBar: IonSearchbar;
   @ViewChild("filteWrapper") filteWrapperElement: ElementRef;
@@ -40,12 +39,17 @@ export class Tab2Page implements OnInit {
   latLng: ILatLng;
   // places: any[] = Places["default"];
   places: Place[] = [];
+  tempPlacesCopy: Place[] = [];
+  category: Category[] = [];
 
+  markers: Marker[] = [];
+
+  isFiltered: boolean = false;
 
   constructor(
     private platform: Platform,
     private renderer: Renderer2,
-    private searchResultSubscriberService: SearchResultSubscriberService,
+    private searchResultService: SearchResultService,
     private placeService: PlaceService,
     private storage: Storage
   ) {
@@ -62,8 +66,21 @@ export class Tab2Page implements OnInit {
     await this.loadMap();
 
     this.storage.get("place").then(res => {
-      if (res) { this.places = res; }
+      if (res) {
+        this.places = res;
+        this.tempPlacesCopy = JSON.parse(JSON.stringify(this.places));
+      }
     });
+
+    this.storage.get("category").then(res => {
+      if (res) { this.category = res; }
+    });
+
+  }
+
+  ngAfterViewInit() {
+    this.renderer.setStyle(this.filteWrapperElement.nativeElement, "top", (window.innerHeight / 2) - 195 + "px");
+    this.renderer.setStyle(this.forYouElement.nativeElement, "top", (window.innerHeight / 2) - 195 + 200 + "px");
   }
 
   loadMap() {
@@ -116,8 +133,6 @@ export class Tab2Page implements OnInit {
 
       this.markLocations();
 
-
-
       this.map.setCameraTarget(this.latLng);
       this.map.animateCamera({
         target: this.latLng,
@@ -130,7 +145,7 @@ export class Tab2Page implements OnInit {
       });
 
       this.map.on(GoogleMapsEvent.MAP_DRAG_START).subscribe(d => {
-        this.searchResultSubscriberService.hideModel();
+        this.searchResultService.hideModel();
         this.renderer.removeClass(
           document.querySelector("ion-tab-bar"),
           "animate-in"
@@ -163,10 +178,11 @@ export class Tab2Page implements OnInit {
       });
 
       this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(d => {
-        this.searchResultSubscriberService.hideModel();
+        this.searchResultService.hideModel();
       });
     });
   }
+
 
   markLocations() {
 
@@ -190,19 +206,18 @@ export class Tab2Page implements OnInit {
         animation: GoogleMapsAnimation.DROP,
         position: latLng,
       });
+
+      this.markers.push(marker);
     });
 
   }
 
-  ionViewDidEnter() { }
-
   onClear(e) {
-    this.searchResultSubscriberService.hideModel();
+    this.searchResultService.hideModel();
   }
 
-
   onFocus() {
-    this.searchResultSubscriberService.showModel();
+    this.searchResultService.showModel(SearchResultComponent);
     setTimeout(() => {
       this.placeSrarchBar.setFocus();
     }, 100);
@@ -210,12 +225,69 @@ export class Tab2Page implements OnInit {
 
   onChange(event: any): void {
     this.placeSrarchBar.setFocus();
-    this.searchResultSubscriberService.filteredPlace(event["detail"]["value"].toLowerCase());
+    this.searchResultService.filteredPlace(event["detail"]["value"].toLowerCase());
   }
 
-  filterPlaces(category: string): void {
-    switch (category) {
-      // case 'restaurent' : 
+  filterPlaces(event: any, category: Category): void {
+    const e = <MouseEvent>event;
+
+    [].forEach.call(this.filteWrapperElement.nativeElement.children, child => {
+      const c = <HTMLElement>child;
+      this.renderer.removeStyle(c.firstChild, "background-color");
+    });
+
+    const dataVal = document.querySelector(".filter-wrapper").attributes.getNamedItem("data-filtered");
+    if (dataVal) {
+
+      if (document.querySelector(".filter-wrapper").attributes.getNamedItem("data-filtered").value !== category.category) {
+
+        this.renderer.setStyle(e.target, "background-color", "#0070c6");
+        this.renderer.setAttribute(this.filteWrapperElement.nativeElement, "data-filtered", category.category);
+
+        const tempPlaces: Place[] = [];
+
+        this.tempPlacesCopy.forEach(place => {
+          let filteredPlace: Category[] = [];
+          filteredPlace = place.category.filter(c => {
+            return c.category_id === category.id;
+          });
+
+          if (filteredPlace.length > 0) {
+            tempPlaces.push(place);
+          }
+        });
+        this.places = [...tempPlaces];
+
+      } else {
+
+        this.places = [...this.tempPlacesCopy];
+        document.querySelector(".filter-wrapper").attributes.removeNamedItem("data-filtered");
+      }
+
+
+    } else {
+
+      this.renderer.setStyle(e.target, "background-color", "#0070c6");
+      this.renderer.setAttribute(this.filteWrapperElement.nativeElement, "data-filtered", category.category);
+
+      const tempPlaces: Place[] = [];
+
+      this.tempPlacesCopy.forEach(place => {
+        let filteredPlace: Category[] = [];
+        filteredPlace = place.category.filter(c => {
+          return c.category_id === category.id;
+        });
+
+        if (filteredPlace.length > 0) {
+          tempPlaces.push(place);
+        }
+      });
+      this.places = [...tempPlaces];
+
     }
+
+    this.markers.forEach(m => m.setVisible(false));
+    this.markLocations();
+
   }
 }
