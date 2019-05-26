@@ -3,11 +3,14 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  Renderer2
+  Renderer2,
+  Input
 } from "@angular/core";
 import * as Places from "../../../assets/Places.json";
 import { NavParams } from "@ionic/angular";
-import { LocationDetailService } from "./location-detail.service.js";
+import { LocationDetailService } from "../../services/subscriber";
+import { Storage } from "@ionic/storage";
+import { Place } from "src/app/interfaces/index.js";
 
 @Component({
   selector: "app-location-detail",
@@ -15,21 +18,15 @@ import { LocationDetailService } from "./location-detail.service.js";
   styleUrls: ["./location-detail.component.scss"]
 })
 export class LocationDetailComponent implements OnInit {
-  constructor(
-    private locationDetailService: LocationDetailService,
-    private navParams: NavParams,
-    private renderer: Renderer2
-  ) {
-    const id: string = this.navParams.get("id");
-    this.place = this.places.find(d => {
-      return d.id.toString() === id.toString();
-    });
-  }
+
+  @Input() id: any;
   @ViewChild("moreDetails")
   moreDetailElem: ElementRef;
 
-  places = Places["default"];
-  place: any;
+  // places = Places["default"];
+  places: Place[] = [];
+  place: Place;
+
   ratings: number[] = [];
   imgPath: string;
   promotions: string[];
@@ -38,8 +35,27 @@ export class LocationDetailComponent implements OnInit {
   currentPos: number = 0;
   showStoryNavButton: boolean = false;
 
-  ngOnInit() {
+
+  constructor(
+    private locationDetailService: LocationDetailService,
+    private navParams: NavParams,
+    private renderer: Renderer2,
+    private storage: Storage
+  ) {
+  }
+
+  async ngOnInit() {
+
+    await this.storage.get("place").then(res => {
+      if (res) { this.places = res; }
+    });
+
+    this.place = this.places.find(d => {
+      return d.id === this.id;
+    });
+
     this.setRatings();
+
     this.promotions = [
       "assets/promotions/promo1.jpg",
       "assets/promotions/promo2.jpg",
@@ -57,6 +73,7 @@ export class LocationDetailComponent implements OnInit {
   }
 
   setRatings() {
+    console.log(this.place);
     for (let i = 0; i < this.place.rating; i++) {
       this.ratings.push(i);
     }

@@ -1,10 +1,9 @@
-import { LocationDetailService } from "./location-detail/location-detail.service";
+import { LocationDetailService, SearchResultService } from "../services/subscriber";
 import { LocationDetailComponent } from "./location-detail/location-detail.component";
 import { PlaceDetailPageModule } from "./place-detail/place-detail.module";
 import { SearchResultComponent } from "./search-result/search-result.component";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { SearchResultSubscriberService } from "./search-result/search-result-subscriber.service";
 import { IonicModule } from "@ionic/angular";
 
 @NgModule({
@@ -16,6 +15,6 @@ import { IonicModule } from "@ionic/angular";
     PlaceDetailPageModule
   ],
   entryComponents: [SearchResultComponent, LocationDetailComponent],
-  providers: [SearchResultSubscriberService, LocationDetailService]
+  providers: [SearchResultService, LocationDetailService]
 })
-export class CoreModule {}
+export class CoreModule { }

@@ -37,17 +37,39 @@
   margin-right: 10px;
 }
 
-.search-result-card.search-result-details.name {
-}
-.search-result-card.search-result-details.category {
-}
+// .search-result-card.search-result-details.name {
+// }
+// .search-result-card.search-result-details.category {
+// }
 
 .name {
   color: #535353;
   font-weight: bold;
   font-size: 14px;
 }
+
 .category {
   color: #535353;
   font-size: 12px;
+  margin-right: 5px;
+  border-right: 1px solid #c1c1c1;
+  padding-right: 5px;
+}
+
+.category-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.category-wrapper > .category:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.no-recent-searchers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }

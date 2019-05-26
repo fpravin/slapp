@@ -1,17 +1,34 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <div class="search-wrapper">
-    <!-- <img class="menu-icon" src="../../assets/icon/menu-options.svg" /> -->
-    <ion-searchbar (ionClear)="onClear($event)" (ionFocus)="onFocus($event)"></ion-searchbar>
-  </div>
-
-  <div id="map_canvas"></div>
+    <div class="search-wrapper">
+        <!-- <img class="menu-icon" src="../../assets/icon/menu-options.svg" /> -->
+        <ion-searchbar
+            #PlaceSrarchBar
+            (ionChange)="onChange($event)"
+            (ionClear)="onClear($event)"
+            (ionFocus)="onFocus($event)"
+            debounce="500"
+        ></ion-searchbar>
+    </div>
+    <div
+        #filteWrapper
+        class="filter-wrapper"
+    >
+        <div *ngFor="let cat of category">
+            <img
+                src="{{cat.icon}}"
+                (click)="filterPlaces($event,cat)"
+            >
+        </div>
+    </div>
+    <div
+        #forYou
+        class="for-you"
+        (click)="filterPlaces('forYou')"
+    >
+        <img
+            width="65%"
+            src="assets/icon/for-you.svg"
+        >
+    </div>
+    <div id="map_canvas"></div>
 </ion-content>
-
