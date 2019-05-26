@@ -9,6 +9,7 @@ import { TabsPage } from "./tabs.page";
 import { DashboardPageModule } from "../members/dashboard/dashboard.module";
 import { PlaceDetailPageModule } from "../core/place-detail/place-detail.module";
 
+
 @NgModule({
   imports: [
     IonicModule,
@@ -18,6 +19,7 @@ import { PlaceDetailPageModule } from "../core/place-detail/place-detail.module"
     DashboardPageModule,
     PlaceDetailPageModule
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage],
+  providers: []
 })
-export class TabsPageModule {}
+export class TabsPageModule { }

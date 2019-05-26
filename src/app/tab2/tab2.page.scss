@@ -44,3 +44,46 @@ ion-searchbar {
   width: 8%;
   padding: 5px 0px 5px 6px;
 }
+
+.filter-wrapper {
+  z-index: 1;
+  position: fixed;
+  top: 20%;
+  right: 10px;
+  width: auto;
+  max-height: 195px;
+  background-color: #002c7f;
+  padding: 10px 8px;
+  border-radius: 10px;
+
+  transition: all 1s;
+}
+
+.filter-wrapper div:not(:last-child) {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.animate-out {
+  right: -38px !important;
+}
+
+.animate-in {
+  right: 10px !important;
+}
+
+.for-you{
+  z-index: 1;
+  position: fixed;
+  top: 45%;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  background-color: #002c7f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  
+  transition: all 1s;
+}

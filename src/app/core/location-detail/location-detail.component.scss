@@ -42,13 +42,31 @@
   font-size: 38px;
 }
 
-.base-details > .category {
-  font-size: 18px;
-  line-height: 5px;
+.base-details > .category-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.base-details > .category-wrapper > .category {
+  color: #ffffff;
+  font-size: 12px;
+  margin-right: 5px;
+  border-right: 1px solid #c1c1c1;
+  padding-right: 5px;
+}
+
+.base-details > .category-wrapper > .category:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
 .rating {
   margin-top: 12px;
+}
+
+.rating-image {
+  margin-right: 5px;
 }
 
 .offer-details-wrapper {
