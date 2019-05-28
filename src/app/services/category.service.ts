@@ -4,9 +4,9 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, interval, throwError, of } from "rxjs";
 import { environment } from "src/environments/environment";
-import { map } from "rxjs/operators";
+import { map, retryWhen, flatMap } from "rxjs/operators";
 import { Category } from "../interfaces";
 import { Storage } from "@ionic/storage";
 import { AuthenticationService } from "./authentication.service";
@@ -33,15 +33,29 @@ export class CategoryService {
     };
     return this.http.get<ServerReturn>(endpoint + "category", httpOptions).pipe(
       map(data => {
-        this.cachePlaces(data.data);
         return data.data;
       })
     );
   }
 
-  cachePlaces(data: Category): void {
+  cacheCategory(token: string): void {
     this.storage.remove("category");
-    this.storage.set("category", data);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: token
+      })
+    };
+
+    this.http.get<ServerReturn>(endpoint + "category", httpOptions)
+      .pipe(retryWhen(_ => {
+        return interval(5000).pipe(
+          flatMap(count => count === 3 ? throwError("Giving up") : of(count))
+        );
+      })).subscribe(data => {
+        this.storage.set("category", data.data);
+      });
+
   }
 
 }

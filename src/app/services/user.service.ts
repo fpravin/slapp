@@ -9,9 +9,10 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { map, catchError, tap } from "rxjs/operators";
+import { Observable, of, interval, throwError } from "rxjs";
+import { map, catchError, tap, retryWhen, flatMap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
+import { Storage } from "@ionic/storage";
 
 const endpoint = environment.apiEndpoint;
 const httpOptions = {
@@ -25,7 +26,7 @@ const httpOptions = {
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private storage: Storage) { }
 
   login(user: LoginDataInterface): Observable<any> {
     // return this.http.post<any>(endpoint + "login", user, httpOptions).pipe(
@@ -49,7 +50,7 @@ export class UserService {
     );
   }
 
-  getUser(token): Observable<UserInterface> {
+  getUser(token: string): Observable<UserInterface> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: token
@@ -60,6 +61,25 @@ export class UserService {
         return data;
       })
     );
+  }
+
+  cacheUser(token: string): void {
+    this.storage.remove("user");
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: token
+      })
+    };
+
+    this.http.get<UserInterface>(endpoint + "user", httpOptions)
+      .pipe(retryWhen(_ => {
+        return interval(5000).pipe(
+          flatMap(count => count === 3 ? throwError("Giving up") : of(count))
+        );
+      })).subscribe(data => {
+        this.storage.set("user", data);
+      });
   }
 
   private handleError<T>(operation = "operation", result?: T) {
