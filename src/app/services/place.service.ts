@@ -58,18 +58,25 @@ export class PlaceService {
       })).subscribe(data => {
         this.storage.set("place", data.data);
 
-        const arr: any[] = [];
+        const countArr: any[] = [];
+        const timeArr: any[] = [];
 
         data.data.forEach(element => {
 
-          arr.push({
+          countArr.push({
             placeId: element.id,
             count: 0
           });
 
+          timeArr.push({
+            placeId: element.id,
+            time: 0
+          });
+
         });
 
-        this.storage.set("visitCount", arr);
+        this.storage.set("visitCount", countArr);
+        this.storage.set("timeCount", timeArr);
       });
 
   }

@@ -46,6 +46,9 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
   user: UserInterface;
   token: string;
 
+  fromTime: Date;
+  toTime: Date;
+
   constructor(
     private locationDetailService: LocationDetailService,
     private navParams: NavParams,
@@ -101,10 +104,13 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     ];
     this.promotionStories = [...this.promotions];
 
-    this.mlServiceService.setvisitCount(+this.place.id);
+    this.fromTime = new Date();
+    this.mlServiceService.setVisitCount(+this.place.id);
   }
 
   async ngOnDestroy() {
+    this.toTime = new Date();
+    this.mlServiceService.setTime(this.toTime, this.fromTime, +this.place.id);
     await this.caccheData(this.token, this.user.id);
   }
 
