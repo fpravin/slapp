@@ -17,7 +17,7 @@ import { PlaceDetailPageModule } from "../core/place-detail/place-detail.module"
     FormsModule,
     TabsPageRoutingModule,
     DashboardPageModule,
-    PlaceDetailPageModule
+    PlaceDetailPageModule,
   ],
   declarations: [TabsPage],
   providers: []

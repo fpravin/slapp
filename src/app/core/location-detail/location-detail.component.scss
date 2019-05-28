@@ -38,8 +38,12 @@
   padding: 20px;
 }
 
-.base-details > .name {
+.base-details > .name-wrapper > .name {
   font-size: 38px;
+}
+
+.base-details > .name-wrapper > img {
+  // font-size: 38px;
 }
 
 .base-details > .category-wrapper {

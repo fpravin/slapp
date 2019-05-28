@@ -9,6 +9,7 @@ const routes: Routes = [
     loadChildren: "./dashboard/dashboard.module#DashboardPageModule",
     // canActivate: [AuthGuard]
   }
+
 ];
 
 @NgModule({
@@ -16,4 +17,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MemberRoutingModule {}
+export class MemberRoutingModule { }
