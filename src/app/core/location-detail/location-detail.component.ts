@@ -106,6 +106,7 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
   }
 
   setRatings() {
+    console.log(this.place);
     for (let i = 0; i < this.place.rating; i++) {
       this.ratings.push(i);
     }
