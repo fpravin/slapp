@@ -57,6 +57,19 @@ export class PlaceService {
         );
       })).subscribe(data => {
         this.storage.set("place", data.data);
+
+        const arr: any[] = [];
+
+        data.data.forEach(element => {
+
+          arr.push({
+            placeId: element.id,
+            count: 0
+          });
+
+        });
+
+        this.storage.set("visitCount", arr);
       });
 
   }

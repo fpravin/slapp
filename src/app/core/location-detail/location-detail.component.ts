@@ -15,6 +15,7 @@ import { Place, UserInterface } from "src/app/interfaces/index.js";
 import { FavouriteService } from "src/app/services/favourite.service.js";
 import { ToastService } from "src/app/services/common/toast.service.js";
 import { Theme } from "../../enum";
+import { MlServiceService } from "src/app/services/ml-service.service.js";
 
 @Component({
   selector: "app-location-detail",
@@ -51,7 +52,8 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private storage: Storage,
     private favouriteService: FavouriteService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private mlServiceService: MlServiceService,
   ) {
   }
 
@@ -99,6 +101,7 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     ];
     this.promotionStories = [...this.promotions];
 
+    this.mlServiceService.setvisitCount(+this.place.id);
   }
 
   async ngOnDestroy() {
