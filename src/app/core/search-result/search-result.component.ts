@@ -38,7 +38,6 @@ export class SearchResultComponent implements OnInit {
       const filteredPlaces: Place[] = this.tempPlace.filter(place => {
         return place.name.toLowerCase().includes(text);
       });
-      console.log(filteredPlaces);
 
       if (filteredPlaces.length > 0) {
         this.isReceltlySearchAvailable = false;

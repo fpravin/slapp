@@ -4,20 +4,25 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  Input
+  Input,
+  OnDestroy
 } from "@angular/core";
 import * as Places from "../../../assets/Places.json";
 import { NavParams } from "@ionic/angular";
 import { LocationDetailService } from "../../services/subscriber";
 import { Storage } from "@ionic/storage";
-import { Place } from "src/app/interfaces/index.js";
+import { Place, UserInterface } from "src/app/interfaces/index.js";
+import { FavouriteService } from "src/app/services/favourite.service.js";
+import { ToastService } from "src/app/services/common/toast.service.js";
+import { Theme } from "../../enum";
 
 @Component({
   selector: "app-location-detail",
   templateUrl: "./location-detail.component.html",
   styleUrls: ["./location-detail.component.scss"]
 })
-export class LocationDetailComponent implements OnInit {
+
+export class LocationDetailComponent implements OnInit, OnDestroy {
 
   @Input() id: any;
   @ViewChild("moreDetails")
@@ -35,12 +40,18 @@ export class LocationDetailComponent implements OnInit {
   currentPos: number = 0;
   showStoryNavButton: boolean = false;
 
+  isFavourite: boolean = false;
+
+  user: UserInterface;
+  token: string;
 
   constructor(
     private locationDetailService: LocationDetailService,
     private navParams: NavParams,
     private renderer: Renderer2,
-    private storage: Storage
+    private storage: Storage,
+    private favouriteService: FavouriteService,
+    private toastService: ToastService
   ) {
   }
 
@@ -53,6 +64,24 @@ export class LocationDetailComponent implements OnInit {
     this.place = this.places.find(d => {
       return d.id === this.id;
     });
+
+    await this.storage.get("favourite").then(res => {
+      if (res !== null) {
+        res.forEach(fav => {
+          if (fav.place_id === this.place.id) {
+            this.isFavourite = true;
+          }
+        });
+      }
+    });
+
+
+    await this.storage.get("user").then(user => { this.user = user; });
+    await this.storage.get("auth-token").then(token => { this.token = token; });
+
+    // await this.caccheData(this.token, this.user.id);
+
+
 
     this.setRatings();
 
@@ -70,6 +99,10 @@ export class LocationDetailComponent implements OnInit {
     ];
     this.promotionStories = [...this.promotions];
 
+  }
+
+  async ngOnDestroy() {
+    await this.caccheData(this.token, this.user.id);
   }
 
   setRatings() {
@@ -109,5 +142,30 @@ export class LocationDetailComponent implements OnInit {
     this.renderer.setStyle(document.querySelector(".promotion-images"), "right", this.currentPos + "px");
   }
 
+  async toggleFavourite(): Promise<void> {
+    this.isFavourite = !this.isFavourite;
+
+    const favouriteData = {
+      user_id: this.user.id,
+      place_id: this.place.id
+    };
+
+    this.favouriteService.toggleFavourite(favouriteData, this.token).toPromise().then(
+      d => {
+        console.log(d);
+        this.toastService.showToast("You're logged in.", Theme.SUCCESS);
+      }
+    ).catch(
+      err => {
+        console.log(err);
+      }
+    );
+
+    await this.caccheData(this.token, this.user.id);
+  }
+
+  async caccheData(token: string, id: string): Promise<void> {
+    await this.favouriteService.cacheFavourite(token, id);
+  }
 
 }

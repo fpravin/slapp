@@ -65,13 +65,11 @@ export class AuthenticationService {
             .set(TOKEN_KEY, data.token_type + " " + data.access_token)
             .then(() => {
               this.authenticationState.next(true);
-              this.router.navigate(["dashboard"]);
+              this.router.navigate(["welcome"]);
             });
-          console.log(data);
         },
         error => {
           this.toastService.showToast("You're not logged in.", Theme.WARING);
-          console.log(error);
           // this.alertService.error(error);
           // this.loading = false;
         }
@@ -79,7 +77,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.storage.remove(TOKEN_KEY).then(() => {
+    return this.storage.clear().then(() => {
       this.authenticationState.next(false);
       this.router.navigate(["login"]);
     });

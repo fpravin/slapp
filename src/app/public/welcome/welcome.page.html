@@ -1,0 +1,8 @@
+<!-- https://icons8.com/preloaders/ -->
+<div
+    *ngIf="isLoading | async"
+    class="loader"
+>
+    <img src="assets/loader.svg">
+    <p>{{loaderText}}</p>
+</div>
