@@ -22,7 +22,7 @@
     ],
     "paths": {
       "stream": [
-        "../node_modules/readable-stream/readable.js"
+        "node_modules/readable-stream/readable.js"
       ]
     }
   }
