@@ -20,6 +20,7 @@ import { Place, Category } from "../interfaces";
 import { Storage } from "@ionic/storage";
 import { IonSearchbar } from "@ionic/angular";
 import { SearchResultComponent } from "../core/search-result/search-result.component";
+import { MlServiceService } from "../services/ml-service.service";
 
 @Component({
   selector: "app-tab2",
@@ -51,7 +52,8 @@ export class Tab2Page implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private searchResultService: SearchResultService,
     private placeService: PlaceService,
-    private storage: Storage
+    private storage: Storage,
+    private mlServiceService: MlServiceService
   ) {
     navigator.geolocation.getCurrentPosition(geoLocation => {
       this.latLng = {
@@ -290,4 +292,14 @@ export class Tab2Page implements OnInit, AfterViewInit {
     this.markLocations();
 
   }
+
+  doMl(): void {
+    this.mlServiceService.runMl().then(recommendations => {
+      this.places = [...recommendations];
+      this.markers.forEach(m => m.setVisible(false));
+      this.markLocations();
+    });
+  }
+
+
 }

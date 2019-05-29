@@ -57,6 +57,26 @@ export class PlaceService {
         );
       })).subscribe(data => {
         this.storage.set("place", data.data);
+
+        const countArr: any[] = [];
+        const timeArr: any[] = [];
+
+        data.data.forEach(element => {
+
+          countArr.push({
+            placeId: element.id,
+            count: 0
+          });
+
+          timeArr.push({
+            placeId: element.id,
+            time: 0
+          });
+
+        });
+
+        this.storage.set("visitCount", countArr);
+        this.storage.set("timeCount", timeArr);
       });
 
   }
