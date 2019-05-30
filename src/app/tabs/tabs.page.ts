@@ -47,6 +47,30 @@ export class TabsPage implements OnInit {
       }
     });
 
+    this.storage.remove("visitCount");
+    this.storage.remove("timeCount");
+    this.storage.get("place").then(place => {
+      const countArr: any[] = [];
+      const timeArr: any[] = [];
+
+      place.forEach(element => {
+
+        countArr.push({
+          placeId: element.id,
+          count: 0
+        });
+
+        timeArr.push({
+          placeId: element.id,
+          time: 0
+        });
+
+      });
+
+      this.storage.set("visitCount", countArr);
+      this.storage.set("timeCount", timeArr);
+    });
+
 
   }
 

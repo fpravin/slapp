@@ -13,7 +13,8 @@ const routes: Routes = [
         children: [
           {
             path: "",
-            loadChildren: "../tab1/tab1.module#Tab1PageModule"
+            loadChildren: "../tab1/tab1.module#Tab1PageModule",
+            canActivate: [AuthGuard]
           }
         ]
       },
@@ -32,7 +33,8 @@ const routes: Routes = [
         children: [
           {
             path: "",
-            loadChildren: "../tab3/tab3.module#Tab3PageModule"
+            loadChildren: "../tab3/tab3.module#Tab3PageModule",
+            canActivate: [AuthGuard]
           }
         ]
       },
