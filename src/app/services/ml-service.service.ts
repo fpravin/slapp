@@ -129,22 +129,30 @@ export class MlServiceService {
         input[1] = (findCount.count >= 3) ? true : false;
         input[2] = (findFav) ? true : false;
 
+        console.log("Place -- " + p.name);
         for (let index = 0; index < 3; index++) {
           const output = net.run(input);
+          // tslint:disable-next-line:max-line-length
+          console.log("INPUT" + (index + 1) + " [" + input[0] + " " + input[1] + " " + input[2] + "] " + "OUTPUT: " + (index + 1) + " === " + output);
           total = total + output[0];
         }
+        console.log("Total -- " + total);
         avg = total / 3;
+        console.log("Average -- " + avg);
 
-        console.log(avg);
-        if (avg > 0.75) {
+        if (avg > 0.7) {
           recommendationArray.push(p);
+          console.log("%c Remommended ", "background: green; color: white; display: block;");
+        } else {
+
+          console.log("%c Not Remommended ", "background: red; color: white; display: block;");
         }
+
 
         total = 0;
         avg = 0;
 
-
-
+        console.log("--------------------------------------------------------------------------------------------------------------------");
       });
 
     });

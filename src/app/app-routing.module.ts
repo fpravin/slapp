@@ -13,30 +13,14 @@ const routes: Routes = [
     loadChildren: "./public/register/register.module#RegisterPageModule"
   },
   {
-    path: "members",
-    loadChildren: "./members/member-routing.module#MemberRoutingModule"
-  },
-  {
     path: "page",
-    // canActivate: [AuthGuard],
     loadChildren: "./tabs/tabs.module#TabsPageModule"
   },
   {
-    path: "dashboard",
-    loadChildren: "./members/dashboard/dashboard.module#DashboardPageModule"
-    // canActivate: [AuthGuard],
-  },
-  { 
-    path: "welcome", 
-    loadChildren: "./public/welcome/welcome.module#WelcomePageModule" ,
+    path: "welcome",
+    loadChildren: "./public/welcome/welcome.module#WelcomePageModule",
     canActivate: [AuthGuard]
-  },
-
-  // {
-  //   path: "welcome",
-  //   loadChildren: "./core/welcome/welcome.module#WelcomePageModule",
-  //   canActivate: [AuthGuard]
-  // }
+  }
 ];
 @NgModule({
   imports: [
