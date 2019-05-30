@@ -28,16 +28,17 @@ export class DashboardPage implements OnInit {
     // });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     // this.authenticationService.getUserData();
-    this.getUserData();
+    await this.getUserData();
   }
 
-  getUserData() {
-    this.storage.get("auth-token").then(token => {
+  async getUserData() {
+    await this.storage.get("auth-token").then(token => {
       if (token) {
         this.userService.getUser(token).subscribe((data: UserInterface) => {
           console.log(data);
+          this.user = data;
           return data;
         });
       }

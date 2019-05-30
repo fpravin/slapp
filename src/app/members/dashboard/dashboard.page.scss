@@ -1,0 +1,28 @@
+.row-1 > span {
+  float: right;
+}
+
+ion-button {
+  --background: transparent;
+}
+
+ion-button > ion-icon {
+  font-size: 18px;
+  color: #002c7f;
+}
+
+ion-button:active {
+  background: transparent;
+}
+
+.row-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 85px;
+  flex-direction: column;
+}
+
+.name {
+  margin-bottom: 5px;
+}
