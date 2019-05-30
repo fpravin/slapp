@@ -35,7 +35,7 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
 
   ratings: number[] = [];
   imgPath: string;
-  promotions: string[];
+  promotions: string[] = [];
   promotionStories: string[];
   tempPromotionStories: string[];
   currentPos: number = 0;
@@ -84,24 +84,12 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     await this.storage.get("user").then(user => { this.user = user; });
     await this.storage.get("auth-token").then(token => { this.token = token; });
 
-    // await this.caccheData(this.token, this.user.id);
-
-
-
     this.setRatings();
 
-    this.promotions = [
-      "assets/promotions/promo1.jpg",
-      "assets/promotions/promo2.jpg",
-      "assets/promotions/promo3.jpg",
-      "assets/promotions/promo4.jpg",
-      "assets/promotions/promo5.jpg",
-      "assets/promotions/promo6.jpg",
-      "assets/promotions/promo7.jpg",
-      "assets/promotions/promo8.jpg",
-      "assets/promotions/promo9.jpg",
-      "assets/promotions/promo.png"
-    ];
+    for (let index = 0; index < 8; index++) {
+      this.promotions.push("assets/placeimages/" + this.place.id + "/p" + (index + 1) + ".jpg");
+    }
+
     this.promotionStories = [...this.promotions];
 
     this.fromTime = new Date();
@@ -115,7 +103,6 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
   }
 
   setRatings() {
-    console.log(this.place);
     for (let i = 0; i < this.place.rating; i++) {
       this.ratings.push(i);
     }
