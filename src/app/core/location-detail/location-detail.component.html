@@ -1,7 +1,10 @@
 <ion-content>
     <!-- <img class="header-image" src="../../../assets/placeimages/pub1.jpg" /> -->
     <div class="details-wrapper">
-        <div class="base-details-wrapper">
+        <div
+            class="base-details-wrapper"
+            [style.background-image]=" 'url(assets/placeimages/'+place?.id+'/main.jpg)'"
+        >
             <button
                 class="back-button"
                 (click)="goBack()"
@@ -10,8 +13,14 @@
                 <span class="name-wrapper">
                     <span class="name">{{ place?.name }}</span>
                     <span (click)="toggleFavourite()">
-                        <img *ngIf="isFavourite" src="assets/icon/like.png">
-                        <img *ngIf="!isFavourite" src="assets/icon/dislike.png">
+                        <img
+                            *ngIf="isFavourite"
+                            src="assets/icon/like.png"
+                        >
+                        <img
+                            *ngIf="!isFavourite"
+                            src="assets/icon/dislike.png"
+                        >
                     </span>
                 </span>
                 <div class="category-wrapper">
