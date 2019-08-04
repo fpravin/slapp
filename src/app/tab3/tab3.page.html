@@ -4,12 +4,21 @@
         <div
             class="fav-card"
             *ngFor="let fav of favourites; let i = index;"
-            [style.backgroundImage]="'url('+fav.images+')'"
+            [style.background-image]=" 'url(assets/placeimages/'+fav?.id+'/main.jpg)'"
         >
             <!-- <img src="{{fav.images}}"> -->
             <div class="fav-details">
                 <h6>{{fav.name}}</h6>
-                <p>{{fav.category}}</p>
+
+                <span class="category-wrapper">
+                    <p
+                        class="category"
+                        *ngFor="let cat of fav?.category"
+                    >
+                        {{ cat.category }}
+                    </p>
+                </span>
+
             </div>
         </div>
     </div>
