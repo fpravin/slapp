@@ -66,3 +66,11 @@ p {
   border-radius: 5px;
   box-shadow: 0 10px 6px -6px #a4a4a4;
 }
+
+.category-wrapper {
+  display: flex;
+}
+
+.category-wrapper p {
+  margin: 0 2px;
+}

@@ -149,7 +149,7 @@ export class LocationDetailComponent implements OnInit, OnDestroy {
     this.favouriteService.toggleFavourite(favouriteData, this.token).toPromise().then(
       d => {
         console.log(d);
-        this.toastService.showToast("You're logged in.", Theme.SUCCESS);
+        this.toastService.showToast(d.message, Theme.SUCCESS);
       }
     ).catch(
       err => {

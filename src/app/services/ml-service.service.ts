@@ -4,6 +4,10 @@ import { Storage } from "@ionic/storage";
 import * as brain from "brain.js";
 import { Place } from "../interfaces";
 
+import { LinearRegression } from "machinelearn/linear_model";
+import { KNeighborsClassifier } from "machinelearn/neighbors";
+import { GaussianNB } from "machinelearn/naive_bayes";
+
 
 @Injectable({
   providedIn: "root"
@@ -67,11 +71,44 @@ export class MlServiceService {
 
   async runMl(): Promise<Place[]> {
 
-    const net = new brain.NeuralNetwork();
 
+    const knn = new KNeighborsClassifier();
+    const X = [
+      [30, true, true],
+      [30, false, false],
+      [30, true, false],
+      [30, false, true],
+
+      [20, true, true],
+      [20, false, false],
+      [20, true, false],
+      [20, false, true],
+
+      [10, true, true],
+      [10, false, false],
+      [10, true, false],
+      [10, false, true]
+    ];
+    const y = [
+      1,
+      0.3,
+      0.8,
+      0.8,
+      0.8,
+      0.2,
+      0.6,
+      0.6,
+      0.6,
+      0,
+      0.3,
+      0.3
+    ];
+
+    // working
+    const net = new brain.NeuralNetwork();
     net.train(
       [
-        { input: [30, true, true], output: [1] },
+        { input: [30, true, true], output: [1.5] },
         { input: [30, false, false], output: [0.3] },
         { input: [30, true, false], output: [0.8] },
         { input: [30, false, true], output: [0.8] },
@@ -88,11 +125,10 @@ export class MlServiceService {
       ]
     );
 
+
     let timeData: TimeMl[];
     let countData: CountML[];
     let favData: Favourite[];
-    let total: number = 0;
-    let avg: number = 0;
 
     const recommendationArray: Place[] = [];
 
@@ -129,47 +165,58 @@ export class MlServiceService {
         input[1] = (findCount.count >= 3) ? true : false;
         input[2] = (findFav) ? true : false;
 
-        console.log("Place -- " + p.name);
-        for (let index = 0; index < 3; index++) {
-          const output = net.run(input);
-          // tslint:disable-next-line:max-line-length
-          console.log("INPUT" + (index + 1) + " [" + input[0] + " " + input[1] + " " + input[2] + "] " + "OUTPUT: " + (index + 1) + " === " + output);
-          total = total + output[0];
-        }
-        console.log("Total -- " + total);
-        avg = total / 3;
-        console.log("Average -- " + avg);
+        const NNOutput: number = net.run(input);
 
-        if (avg > 0.7) {
-          recommendationArray.push(p);
-          console.log("%c Remommended ", "background: green; color: white; display: block;");
+        if (NNOutput > 0.6) {
+
+          knn.fit(X, y);
+          const KNNOutput: number = knn.predict(input);
+
+          if (Math.abs(NNOutput - KNNOutput) < 0.3) {
+            recommendationArray.push(p);
+          } else {
+
+          }
         } else {
 
-          console.log("%c Not Remommended ", "background: red; color: white; display: block;");
         }
 
 
-        total = 0;
-        avg = 0;
-
-        console.log("--------------------------------------------------------------------------------------------------------------------");
       });
 
     });
 
+    this.storage.get("visitCount").then(visit => {
+      console.log("Visit count");
+      console.log(visit);
+    });
+
+    this.storage.get("timeCount").then(count => {
+      console.log("Time");
+      console.log(count);
+    });
+
+    this.storage.get("favourite").then(fav => {
+      console.log("Favourite Place");
+      console.log(fav);
+    });
+
+    console.log("Recommened Places");
+    console.log(recommendationArray);
+    
     return recommendationArray;
   }
 
 }
 
 interface CountML {
-  count: number;
   placeId: number;
+  count: number;
 }
 
 interface TimeMl {
-  time: number;
   placeId: number;
+  time: number;
 }
 
 interface Favourite {
