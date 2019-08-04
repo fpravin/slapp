@@ -1,19 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="goBack()">
-        <ion-icon name="arrow-dropleft"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>My Dashboard</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
- 
-<ion-content padding>
- <button (click)="getUserData()">qwdwqdqwdwq</button>
+<ion-content>
+    <div class="row-1">
+        <span>
+            <ion-button (click)="logout()">
+                <ion-icon
+                    slot="icon-only"
+                    name="log-out"
+                ></ion-icon>
+            </ion-button>
+        </span>
+    </div>
+
+    <div class="row-2">
+      <img width="35%" src="assets/icon/dp.png">
+
+      <div class="name">{{user?.name}}</div>
+      <div>{{user?.email}}</div>
+    </div>
 </ion-content>

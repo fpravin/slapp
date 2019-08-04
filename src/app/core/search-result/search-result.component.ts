@@ -83,5 +83,6 @@ export class SearchResultComponent implements OnInit {
 
     if (!placeAlreadyAdded) { this.recentlySearchedPlaces.push(place); }
     this.storage.set("recentlySearchedPlaces", this.recentlySearchedPlaces);
+
   }
 }
